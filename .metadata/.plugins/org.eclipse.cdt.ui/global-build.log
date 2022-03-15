@@ -1,17 +1,17 @@
-00:14:26 **** Incremental Build of configuration Debug for project Practica01_01 ****
+00:39:50 **** Incremental Build of configuration Debug for project Practica01_solUBA ****
 make -j12 all 
-arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_01/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_01/Drivers/CMSIS/Include" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_01/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_01/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_01/Drivers/Core/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
-arm-none-eabi-gcc -o "Practica01_01.elf" @"objects.list"   -mcpu=cortex-m4 -T"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_01/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica01_01.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: Practica01_01.elf
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_solUBA/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_solUBA/Drivers/CMSIS/Include" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_solUBA/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_solUBA/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_solUBA/Drivers/Core/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Practica01_solUBA.elf" @"objects.list"   -mcpu=cortex-m4 -T"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica01_solUBA/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica01_solUBA.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica01_solUBA.elf
  
-arm-none-eabi-size   Practica01_01.elf 
-arm-none-eabi-objdump -h -S  Practica01_01.elf  > "Practica01_01.list"
-arm-none-eabi-objcopy  -O binary  Practica01_01.elf  "Practica01_01.bin"
+arm-none-eabi-size   Practica01_solUBA.elf 
+arm-none-eabi-objdump -h -S  Practica01_solUBA.elf  > "Practica01_solUBA.list"
+arm-none-eabi-objcopy  -O binary  Practica01_solUBA.elf  "Practica01_solUBA.bin"
    text	   data	    bss	    dec	    hex	filename
-   6772	     36	   1572	   8380	   20bc	Practica01_01.elf
+   6672	     40	   1576	   8288	   2060	Practica01_solUBA.elf
 Finished building: default.size.stdout
  
-Finished building: Practica01_01.bin
+Finished building: Practica01_solUBA.bin
  
-Finished building: Practica01_01.list
+Finished building: Practica01_solUBA.list
  
