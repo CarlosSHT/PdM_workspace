@@ -34,7 +34,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 static Led_TypeDef leds_list[] = { LED1, LED2, LED3 };		//Lista Leds Disponibles
-static tick_t duration_list[] = { 100, 200,5000,50};		//tiempos de retardos en milisegundos
+static tick_t duration_list[] = { 100, 500,1000};		//tiempos de retardos en milisegundos
 
 
 static const uint8_t LED_COUNT = sizeof(leds_list) / sizeof(Led_TypeDef);	//nro de leds
