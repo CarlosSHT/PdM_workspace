@@ -33,6 +33,13 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+static Led_TypeDef leds_list[] = { LED1, LED2, LED3 };		//Lista Leds Disponibles
+static tick_t duration_list[] = { 100, 200,5000,50};		//tiempos de retardos en milisegundos
+
+
+static const uint8_t LED_COUNT = sizeof(leds_list) / sizeof(Led_TypeDef);	//nro de leds
+static const uint8_t DELAYS_COUNT = sizeof(duration_list) / sizeof(tick_t);	//nro de retardos
+static delay_t *delay_ptr;	//puntero donde se alojaran las estructuras
 /* UART handler declaration */
 UART_HandleTypeDef UartHandle;
 
@@ -65,27 +72,43 @@ int main(void) {
 	SystemClock_Config();
 
 	/* Initialize BSP Leds */
-//	BSP_LED_Init(LED1);
-//	BSP_LED_Init(LED2);
-//	BSP_LED_Init(LED3);
+	BSP_LED_Init(LED1);
+	BSP_LED_Init(LED2);
+	BSP_LED_Init(LED3);
+
+	/* Inicializa estructuras con punteros */
+	for (uint8_t i_led = 0; i_led < LED_COUNT; ++i_led) {
+		delayInit(&delay_ptr[i_led], 0);
+		if (i_led < DELAYS_COUNT) {
+			delayInit(&delay_ptr[i_led], duration_list[i_led]);
+		}
+	}
 
 	/* Infinite loop */
 	while (1) {
+		/* Cambia el estado de los leds */
+		for (uint8_t i_led = 0; i_led < LED_COUNT; ++i_led) {
+			if (delayRead(&delay_ptr[i_led])) {
+				BSP_LED_Toggle(leds_list[i_led]);
+			}
 
-
+		}
 	}
 }
 
 void delayInit(delay_t *delay, tick_t duration) {
-	delay->duration = duration;
+	if (duration>0) {	// duración mayor a 0 para actualizar
+		delay->duration = duration;
+	}
 }
 
 bool_t delayRead(delay_t *delay) {
 	bool flag = false;
-	if (delay->running) {
+	if (delay->running) {	// verifica la existencia de un delay en curso
 
 		if (HAL_GetTick() - delay->startTime >= delay->duration) {
 			flag = true;
+			delay->startTime = HAL_GetTick();	//actualiza el tiempo de inicio
 		}
 
 	} else {
@@ -96,11 +119,10 @@ bool_t delayRead(delay_t *delay) {
 }
 
 void delayWrite(delay_t *delay, tick_t duration) {
-	if (delay->duration != 0) {
+	if (delay->running) {	//actualiza la duración si existe un retardo en curso
 		delay->duration = duration;
 	}
 }
-
 /**
  * @brief  System Clock Configuration
  *         The system Clock is configured as follow : 
