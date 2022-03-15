@@ -65,21 +65,48 @@ int main(void) {
 	SystemClock_Config();
 
 	/* Initialize BSP Led for LED2 */
-	BSP_LED_Init(LED1);
-	BSP_LED_Init(LED2);
-	BSP_LED_Init(LED3);
+	  BSP_PB_Init(BUTTON_USER, BUTTON_MODE_GPIO);
+	  BSP_LED_Init(LED1);
+	  BSP_LED_Init(LED2);
+	  BSP_LED_Init(LED3);
+	  bool estado_anterior=false;
+	  bool estado=false;
 	/* Infinite loop */
 	while (1) {
 
-		BSP_LED_Toggle(LED1);
-		HAL_Delay(200);
-		BSP_LED_Toggle(LED1);
-		BSP_LED_Toggle(LED2);
-		HAL_Delay(200);
-		BSP_LED_Toggle(LED2);
-		BSP_LED_Toggle(LED3);
-		HAL_Delay(200);
-		BSP_LED_Toggle(LED3);
+		  if(BSP_PB_GetState(BUTTON_USER) && estado_anterior==false)
+		  {
+			  estado_anterior=true;
+			  estado=estado ^ 1;
+		  }
+		  if(BSP_PB_GetState(BUTTON_USER)==0)
+		  {
+			  estado_anterior=false;
+		  }
+
+		  if (estado==1)
+		  {
+			  BSP_LED_Toggle(LED1);
+			  HAL_Delay(200);
+			  BSP_LED_Toggle(LED1);
+			  BSP_LED_Toggle(LED3);
+			  HAL_Delay(200);
+			  BSP_LED_Toggle(LED3);
+			  BSP_LED_Toggle(LED2);
+			  HAL_Delay(200);
+			  BSP_LED_Toggle(LED2);
+		  }
+		  else{
+			  BSP_LED_Toggle(LED1);
+			  HAL_Delay(200);
+			  BSP_LED_Toggle(LED1);
+			  BSP_LED_Toggle(LED2);
+			  HAL_Delay(200);
+			  BSP_LED_Toggle(LED2);
+			  BSP_LED_Toggle(LED3);
+			  HAL_Delay(200);
+			  BSP_LED_Toggle(LED3);
+		  }
 	}
 }
 
