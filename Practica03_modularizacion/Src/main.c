@@ -30,11 +30,12 @@
  */
 
 /* Private typedef -----------------------------------------------------------*/
+#define	DELAY_LEDS	200
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 static Led_TypeDef leds_list[] = { LED1, LED2, LED3 }; //Lista de Leds disponibles en placa
-static tick_t delay_toogle = 200;		//tiempo en milisegundos
+static tick_t delay_toogle = DELAY_LEDS;		//tiempo en milisegundos
 
 static const uint8_t LED_COUNT = sizeof(leds_list) / sizeof(Led_TypeDef);
 static delay_t delay_strled;
