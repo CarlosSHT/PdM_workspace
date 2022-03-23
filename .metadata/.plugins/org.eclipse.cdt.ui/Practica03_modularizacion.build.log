@@ -1,17 +1,18 @@
-20:33:14 **** Incremental Build of configuration Debug for project Practica03_modularizacion ****
+17:46:52 **** Incremental Build of configuration Debug for project Practica03_modularizacion ****
 make -j4 all 
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/CMSIS/Include" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/Core/Inc" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/API/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Drivers/API/Src/API_delay.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/CMSIS/Include" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/Core/Inc" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/Drivers/API/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/API/Src/API_delay.d" -MT"Drivers/API/Src/API_delay.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/API/Src/API_delay.o"
 arm-none-eabi-gcc -o "Practica03_modularizacion.elf" @"objects.list"   -mcpu=cortex-m4 -T"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica03_modularizacion/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica03_modularizacion.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: Practica03_modularizacion.elf
  
 arm-none-eabi-size   Practica03_modularizacion.elf 
 arm-none-eabi-objdump -h -S  Practica03_modularizacion.elf  > "Practica03_modularizacion.list"
    text	   data	    bss	    dec	    hex	filename
-   6444	     40	   1584	   8068	   1f84	Practica03_modularizacion.elf
+   6448	     40	   1584	   8072	   1f88	Practica03_modularizacion.elf
 Finished building: default.size.stdout
  
 Finished building: Practica03_modularizacion.list
  
 
-20:33:17 Build Finished. 0 errors, 0 warnings. (took 3s.631ms)
+17:46:57 Build Finished. 0 errors, 0 warnings. (took 4s.863ms)
 
