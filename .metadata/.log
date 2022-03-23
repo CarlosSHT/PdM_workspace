@@ -4226,3 +4226,18 @@ Command-line arguments:  -data /mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/P
 
 !ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-03-22 19:43:34.295
 !MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2022-03-22 20:25:18.323 -----------------------------------------------
+eclipse.buildId=Version 1.9.0
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-03-22 20:25:24.674
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-03-22 20:25:24.823
+!MESSAGE Log4j initialized with config file /mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/.metadata/.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-03-22 20:25:34.192
+!MESSAGE Started RMI Server, listening on port 41337
