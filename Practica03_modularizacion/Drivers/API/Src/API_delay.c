@@ -10,11 +10,17 @@ void delayInit(delay_t *delay, tick_t duration) {
 
 bool_t delayRead(delay_t *delay) {
 
-	if (delay == NULL || delay->duration == 0) {
+	bool flag = false;
+
+	if (delay == NULL) {
 		Error_Handler_API_delay();
 	}
 
-	bool flag = false;
+	if(delay->duration == 0)
+	{
+		return flag;
+	}
+
 	if (delay->running) {
 		if (HAL_GetTick() - delay->startTime >= delay->duration) {
 			flag = true;
@@ -30,7 +36,7 @@ bool_t delayRead(delay_t *delay) {
 
 void delayWrite(delay_t *delay, tick_t duration) {
 
-	if (delay == NULL || duration == 0) {
+	if (delay == NULL) {
 		Error_Handler_API_delay();
 	}
 

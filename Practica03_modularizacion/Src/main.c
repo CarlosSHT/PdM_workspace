@@ -30,12 +30,12 @@
  */
 
 /* Private typedef -----------------------------------------------------------*/
-#define	DELAY_LEDS	200
+#define	DELAY_LEDS	200		//	Retardo en milisegundos
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 static Led_TypeDef leds_list[] = { LED1, LED2, LED3 }; //Lista de Leds disponibles en placa
-static tick_t delay_toogle = DELAY_LEDS;		//tiempo en milisegundos
+static tick_t delay_toogle = DELAY_LEDS;
 
 static const uint8_t LED_COUNT = sizeof(leds_list) / sizeof(Led_TypeDef);
 static delay_t delay_strled;
@@ -71,32 +71,33 @@ int main(void) {
 	/* Configure the system clock to 180 MHz */
 	SystemClock_Config();
 
-	/* Initialize BSP Leds */
+	/* Inicializacion de leds en BSP*/
 	BSP_LED_Init(LED1);
 	BSP_LED_Init(LED2);
 	BSP_LED_Init(LED3);
 
-	/* Inicializa estructura delay*/
+	/* Inicializa el delay*/
 	delayInit(&delay_strled, delay_toogle);
 
+	/* Creacion de variables de estado de led anterior y led actual*/
 	uint8_t ledCurrent_index = 0;
 	uint8_t ledPrevious_index = 0;
 
 	/* Infinite loop */
 	while (1) {
 		/* Cambia el estado de los leds */
-		if (delayRead(&delay_strled)) {
-			ledPrevious_index = ledCurrent_index - 1;
+		if (delayRead(&delay_strled)) {					// Evento retardo no bloqueante
+			ledPrevious_index = ledCurrent_index - 1;	// Se configura el indice del led a apagar (uno anterior)
 
-			if (ledPrevious_index > LED_COUNT - 1) {
-				ledPrevious_index = LED_COUNT - 1;
-			}
+			if (ledPrevious_index > LED_COUNT - 1) {	// Si el calculo debiera salir negativo
+				ledPrevious_index = LED_COUNT - 1;		// (al ser tipo uint8_t toma un valor muy alto)
+			}											// Se asigna el indice del ultimo led
 
-			BSP_LED_Off(leds_list[ledPrevious_index]);
-			BSP_LED_On(leds_list[ledCurrent_index]);
+			BSP_LED_Off(leds_list[ledPrevious_index]);	// Apagado del led anterior
+			BSP_LED_On(leds_list[ledCurrent_index]);	// Encendido del led actual
 
-			ledCurrent_index++;
-			if (ledCurrent_index > LED_COUNT - 1) {
+			ledCurrent_index++;							// Se incrementa el indice de led
+			if (ledCurrent_index > LED_COUNT - 1) {		// Si se excede el indice este vuelve a 0
 				ledCurrent_index = 0;
 			}
 
