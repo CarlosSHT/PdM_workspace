@@ -12,9 +12,13 @@ Punto 02:
 Se utilizaron 2 variables para identificar los indices del vector de leds a fin de que el anterior se encuentre en modo OFF y el presente en modo ON cada 200 milisegundos.
 
 ---(led3)---[LED1]---[LED2]---[LED3]---(led1)---
+
 ---( OFF)---[ ON ]---[----]---[----]---
+
          ---[ OFF]---[ ON ]---[----]---
+	 
 	 ---[----]---[ OFF]---[ ON ]---
+	 
 	 ---[----]---[----]---[ OFF]---( ON )---
 
 Se muestra la correspondencia entre las variables y los estados
