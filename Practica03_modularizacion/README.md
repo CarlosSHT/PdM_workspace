@@ -1,4 +1,4 @@
-Resolución del Practico 03
+Resolución del Practico 03 - Carlos Herrera
 
 Punto 01. 
 
