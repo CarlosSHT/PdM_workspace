@@ -1,0 +1,87 @@
+#include "API_debounce.h"
+
+static typedef enum{
+BUTTON_UP,
+BUTTON_FALLING,
+BUTTON_DOWN,
+BUTTON_RAISING,
+} debounceState_t;
+
+static debounceState_t estadoActual_DB;
+
+static delay_t debounce_timeout;
+static bool_t flag_falling;
+
+void debounceFSM_init()
+{
+	estadoActual_DB=BUTTON_UP;
+}
+
+void debounceFSM_update()
+{
+	uint8_t button_value= BSP_PB_GetState(BUTTON_USER)^1 ;//? 0:1
+	switch (estadoActual_DB) {
+		case BUTTON_UP:
+			if (button_value==0) {
+				estadoActual_DB=BUTTON_FALLING;
+				delayInit(&debounce_timeout, DELAY_DB);
+			}
+			else {
+				estadoActual_DB=BUTTON_UP;
+			}
+			break;
+		case BUTTON_FALLING:
+			if (button_value==1)
+			{
+				estadoActual_DB=BUTTON_UP;
+			}
+			else {
+				if(delayRead(&debounce_timeout))
+				{
+					flag_falling=true;
+					estadoActual_DB=BUTTON_DOWN;
+					buttonPressed();
+				}
+			}
+
+
+		case BUTTON_DOWN:
+			if (button_value==1) {
+				estadoActual_DB=BUTTON_RAISING;
+				delayInit(&debounce_timeout, DELAY_DB);
+			}
+			break;
+
+		case BUTTON_RAISING:
+			if (button_value==0)
+			{
+				estadoActual_DB=BUTTON_DOWN;
+			}
+			else {
+				if(delayRead(&debounce_timeout))
+				{
+					estadoActual_DB=BUTTON_UP;
+					buttonReleased();
+				}
+			}
+		default:
+			break;
+	}
+}
+
+//void buttonPressed()
+//{
+//	BSP_LED_Toggle(LED1);
+//}
+//
+//void buttonReleased()
+//{
+//	BSP_LED_Toggle(LED3);
+//}
+
+bool_t readKey()
+{
+	bool_t aux_flag=flag_falling;
+	flag_falling = flag_falling? 0:1;
+	return aux_flag;
+}
