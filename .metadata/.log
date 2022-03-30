@@ -4379,3 +4379,47 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-03-26 20:12:16.640
 !MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2022-03-29 20:59:07.299 -----------------------------------------------
+eclipse.buildId=Version 1.9.0
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-03-29 20:59:22.361
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-03-29 20:59:22.689
+!MESSAGE Log4j initialized with config file /mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/.metadata/.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-03-29 20:59:47.380
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-03-29 21:22:16.077
+!MESSAGE Indexed 'Practica04.1_nucleof429' (100 sources, 211 headers) in 25.4 sec: 29,850 declarations; 94,486 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.12%)
+
+!ENTRY com.st.stm32cube.ide.mcu.stackanalyzer 4 0 2022-03-29 21:31:43.391
+!MESSAGE Stackanalyzer failed to analyze input
+!STACK 0
+java.lang.Exception: File: /mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica04.1_f767/Debug/Practica04.1_f767.elfdo not exists
+	at com.st.stm32cube.ide.mcu.utils.assembly.Disassembler.<init>(Disassembler.java:56)
+	at com.st.stm32cube.ide.mcu.utils.assembly.Disassembler.<init>(Disassembler.java:84)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.inputChanged(StackAnalyzerView.java:914)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.lambda$15(StackAnalyzerView.java:1256)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+!ENTRY com.st.stm32cube.ide.mcu.stackanalyzer 4 0 2022-03-29 21:32:35.447
+!MESSAGE Stackanalyzer failed to analyze input
+!STACK 0
+java.lang.Exception: File: /mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica04.1_f767/Debug/Practica04.1_f767.elfdo not exists
+	at com.st.stm32cube.ide.mcu.utils.assembly.Disassembler.<init>(Disassembler.java:56)
+	at com.st.stm32cube.ide.mcu.utils.assembly.Disassembler.<init>(Disassembler.java:84)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.inputChanged(StackAnalyzerView.java:914)
+	at com.st.stm32cube.ide.mcu.stackanalyzer.ui.StackAnalyzerView.lambda$15(StackAnalyzerView.java:1256)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-03-29 21:36:04.358
+!MESSAGE Indexed 'Practica04.2_nucleof430' (100 sources, 209 headers) in 16.9 sec: 29,842 declarations; 90,770 references; 8 unresolved inclusions; 1,836 syntax errors; 1,831 unresolved names (1.5%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-03-29 21:48:59.613
+!MESSAGE Indexed 'Practica04.2_nucleof429' (101 sources, 214 headers) in 14 sec: 29,902 declarations; 94,560 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.12%)
