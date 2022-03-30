@@ -114,7 +114,7 @@ int main(void) {
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		debounceFSM_update();
+		debounceFSM_update();	// Lee el valor de entrada del BUTTON USER y remueve el efecto rebote
 
 	}
 	/* USER CODE END 3 */
@@ -341,30 +341,29 @@ void debounceFSM_init() {
 }
 
 void debounceFSM_update() {
-	uint8_t button_value = BSP_PB_GetState(BUTTON_USER) ^ 1; //? 0:1
+	uint8_t button_value = BSP_PB_GetState(BUTTON_USER) ^ 1;// Valor inverso de BUTTON USER
+
 	switch (estadoActual_DB) {
 	case BUTTON_UP:
-		if (button_value == 0) {
+		if (button_value == 0) {							// Verifica estado bajo de BUTTON USER
 			estadoActual_DB = BUTTON_FALLING;
-			delayInit(&debounce_timeout, DELAY_DB);
-		} else {
-			estadoActual_DB = BUTTON_UP;
+			delayInit(&debounce_timeout, DELAY_DB);			// Inicializa delay no bloqueante de 40ms
 		}
 		break;
 	case BUTTON_FALLING:
 		if (button_value == 1) {
 			estadoActual_DB = BUTTON_UP;
 		} else {
-			if (delayRead(&debounce_timeout)) {
-				estadoActual_DB = BUTTON_DOWN;
-				buttonPressed();
+			if (delayRead(&debounce_timeout)) {				// Existió 40ms de delay no bloqueante?
+				estadoActual_DB = BUTTON_DOWN;				// Estado: BUTTON DOWN
+				buttonPressed();							// Ejecuta la funcion "boton presionado"
 			}
 		}
 
 	case BUTTON_DOWN:
 		if (button_value == 1) {
 			estadoActual_DB = BUTTON_RAISING;
-			delayInit(&debounce_timeout, DELAY_DB);
+			delayInit(&debounce_timeout, DELAY_DB);			// Inicializa delay no bloqueante de 40ms
 		}
 		break;
 
@@ -372,9 +371,9 @@ void debounceFSM_update() {
 		if (button_value == 0) {
 			estadoActual_DB = BUTTON_DOWN;
 		} else {
-			if (delayRead(&debounce_timeout)) {
+			if (delayRead(&debounce_timeout)) {				// Existió 40ms de delay no bloqueante?
 				estadoActual_DB = BUTTON_UP;
-				buttonReleased();
+				buttonReleased();							// Ejecuta la funcion de "boton liberado"
 			}
 		}
 	default:
@@ -383,11 +382,11 @@ void debounceFSM_update() {
 }
 
 void buttonPressed() {
-	BSP_LED_Toggle(LED1);
+	BSP_LED_Toggle(LED1);		// Toggle Presionado real
 }
 
 void buttonReleased() {
-	BSP_LED_Toggle(LED3);
+	BSP_LED_Toggle(LED3);		// Toggle Liberado real
 }
 
 /* USER CODE END 4 */
