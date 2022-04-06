@@ -1,0 +1,17 @@
+10:56:15 **** Incremental Build of configuration Debug for project Practica05_clase ****
+make -j4 all 
+arm-none-eabi-gcc "../Drivers/API/Src/API_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica05_clase/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica05_clase/Drivers/CMSIS/Include" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica05_clase/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica05_clase/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica05_clase/Drivers/Core/Inc" -I"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica05_clase/Drivers/API/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/API/Src/API_uart.d" -MT"Drivers/API/Src/API_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/API/Src/API_uart.o"
+arm-none-eabi-gcc -o "Practica05_clase.elf" @"objects.list"   -mcpu=cortex-m4 -T"/mnt/Disco_D/UBA_CESE/CURSOS/03_PdM/GitHub_Cods/PdM_workspace/Practica05_clase/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica05_clase.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica05_clase.elf
+ 
+arm-none-eabi-size   Practica05_clase.elf 
+arm-none-eabi-objdump -h -S  Practica05_clase.elf  > "Practica05_clase.list"
+   text	   data	    bss	    dec	    hex	filename
+   6448	     40	   1584	   8072	   1f88	Practica05_clase.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica05_clase.list
+ 
+
+10:56:18 Build Finished. 0 errors, 0 warnings. (took 2s.901ms)
+

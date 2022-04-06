@@ -1,0 +1,10 @@
+21:31:40 **** Incremental Build of configuration Debug for project Practica05_f767_clase ****
+make -j4 all 
+arm-none-eabi-size   Practica05_f767_clase.elf 
+   text	   data	    bss	    dec	    hex	filename
+  13160	     52	   1740	  14952	   3a68	Practica05_f767_clase.elf
+Finished building: default.size.stdout
+ 
+
+21:31:40 Build Finished. 0 errors, 0 warnings. (took 663ms)
+

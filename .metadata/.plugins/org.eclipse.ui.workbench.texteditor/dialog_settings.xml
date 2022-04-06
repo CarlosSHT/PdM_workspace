@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="debounceState_t"/>
+		<item key="selection" value="msg_01"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="debounce_timeout"/>
-			<item value="debounceState_t"/>
-			<item value="BUTTON_USER"/>
-			<item value="estadoActual_DB"/>
+			<item value="msg_01"/>
+			<item value="flag_rising"/>
+			<item value="running"/>
+			<item value="buttonReleased"/>
+			<item value="flag_falling"/>
+			<item value="buttonPressed"/>
+			<item value="readKey"/>
+			<item value="nombre"/>
+			<item value="ch"/>
+			<item value="Error"/>
+			<item value="PUTCHAR_PROTOTYPE"/>
+			<item value="HAL_UART_Transmit"/>
+			<item value="UartHandle"/>
+			<item value="USARTx"/>
 			<item value="Error_Handler"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="285"/>
-		<item key="DIALOG_Y_ORIGIN" value="138"/>
+		<item key="DIALOG_X_ORIGIN" value="1488"/>
+		<item key="DIALOG_Y_ORIGIN" value="112"/>
 		<item key="DIALOG_WIDTH" value="363"/>
 		<item key="DIALOG_HEIGHT" value="440"/>
 		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
