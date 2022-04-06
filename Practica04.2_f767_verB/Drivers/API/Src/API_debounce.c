@@ -1,14 +1,5 @@
-/*
- * API_debounce.c
- *
- *  Created on: Mar 29, 2022
- *      Author: carlos
- */
-
-
 #include "API_debounce.h"
 #include "API_delay.h"
-
 
 #define	DELAY_DB	40	//	Retardo en milisegundos
 
@@ -24,9 +15,14 @@ static debounceState_t estadoActual_DB;
 static delay_t struct_delayDB;
 static bool_t flag_falling;
 
+static void buttonPressed();			// debe togglear el LED1
+//static void buttonReleased();		// debe togglear el LED3
 
 void debounceFSM_init() {
+	delayInit(&struct_delayDB, DELAY_DB);
 	estadoActual_DB = BUTTON_UP;
+
+	BSP_PB_Init(BUTTON_UP, BUTTON_MODE_GPIO);
 }
 
 void debounceFSM_update() {
@@ -35,7 +31,8 @@ void debounceFSM_update() {
 	case BUTTON_UP:
 		if (button_value == 0) {
 			estadoActual_DB = BUTTON_FALLING;
-			delayInit(&struct_delayDB, DELAY_DB);
+//			delayInit(&struct_delayDB, DELAY_DB);
+			delayRead(&struct_delayDB);
 		} else {
 			estadoActual_DB = BUTTON_UP;
 		}
@@ -54,7 +51,8 @@ void debounceFSM_update() {
 	case BUTTON_DOWN:
 		if (button_value == 1) {
 			estadoActual_DB = BUTTON_RAISING;
-			delayInit(&struct_delayDB, DELAY_DB);
+			delayRead(&struct_delayDB);
+//			delayInit(&struct_delayDB, DELAY_DB);
 		}
 		break;
 
