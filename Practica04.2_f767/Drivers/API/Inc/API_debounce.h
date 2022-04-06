@@ -2,7 +2,6 @@
 #include <stdint.h>
 
 
-#define	DELAY_DB	40	//	Retardo en milisegundos
 
 
 typedef bool bool_t;

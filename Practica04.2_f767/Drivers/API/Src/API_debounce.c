@@ -1,6 +1,7 @@
 #include "API_debounce.h"
 #include "API_delay.h"
 
+#define	DELAY_DB	40	//	Retardo en milisegundos
 
 typedef enum {
 	BUTTON_UP,
