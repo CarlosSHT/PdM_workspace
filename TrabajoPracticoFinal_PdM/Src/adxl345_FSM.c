@@ -153,7 +153,7 @@ void adxl345_FSM_update() {
 					val_axisX, val_axisY, val_axisZ);
 			uartSendStringSize((uint8_t*) serial_bufferTx, cont_txtBuffer);
 
-			BSP_LEDs_On(false,true,false);
+			BSP_LED_Toggle(LED2);
 		}
 
 		if (readKey())
