@@ -12,7 +12,6 @@
 
 UART_HandleTypeDef UartHandle;
 
-static void Error_Handler();
 
 bool_t uartinit() {
 	// Configuramos los parametros del UART
@@ -58,16 +57,15 @@ void uartSendStringSize(uint8_t *pstring, uint16_t size) {
 }
 
 // Aún no implementado
-void uartReceiveStringSize(uint8_t *pstring, uint16_t size) {
-	HAL_UART_Receive(&UartHandle, pstring, size, TO_UART_PDM);
-//	return HAL_OK;
+HAL_StatusTypeDef uartReceiveStringSize(uint8_t *pstring, uint16_t size) {
+	return HAL_UART_Receive(&UartHandle, pstring, size, TO_UART_PDM);
 }
-
-static void Error_Handler() {
-//	BSP_LED_Init(LED2);
-//	BSP_LED_On(LED2);
-	while (1) {
-
-	}
-}
+//
+//static void Error_Handler() {
+////	BSP_LED_Init(LED2);
+////	BSP_LED_On(LED2);
+//	while (1) {
+//
+//	}
+//}
 

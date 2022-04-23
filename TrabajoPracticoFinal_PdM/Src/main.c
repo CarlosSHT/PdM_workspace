@@ -20,6 +20,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "API_uart.h"
+#include "API_debounce.h"
+#include "adxl345_FSM.h"
+#include "API_i2c.h"
+#include "API_gpio.h"
 /** @addtogroup STM32F4xx_HAL_Examples
  * @{
  */
@@ -33,24 +38,13 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-static tick_t list_delays[] = { 100, 500 };
 
-static const uint8_t DELAYS_COUNT = sizeof(list_delays) / sizeof(tick_t);
-
-static delay_t delay_toogles;
-uint8_t selected_delay;
-
-uint8_t cmd_bufferRx[20];
-char *msg_asc = "Flanco Ascendente\n\r";
-char *msg_des = "Flanco Descendente\n\r";
 
 /* UART handler declaration */
 //UART_HandleTypeDef UartHandle;
-
 /* Private function prototypes -----------------------------------------------*/
 
 static void SystemClock_Config(void);
-static void Error_Handler(void);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -75,73 +69,36 @@ int main(void) {
 	/* Configure the system clock to 180 MHz */
 	SystemClock_Config();
 
-	/* Inicialización de Leds en modo apagado */
+	/* Init Leds */
 	BSP_LED_Init(LED1);
 	BSP_LED_Init(LED2);
 	BSP_LED_Init(LED3);
-	BSP_LED_Off(LED1);
-	BSP_LED_Off(LED2);
-	BSP_LED_Off(LED3);
-	// Inicialización de boton
+	// Init PushButton
 	BSP_PB_Init(BUTTON_USER, BUTTON_MODE_GPIO); //
-	selected_delay = 0;
 
-	// Inicialización del puerto USART3
+	BSP_LEDs_On(false, false, false);
 	uartinit();
+	if (!i2cinit()) {
+		Error_Handler();
+	}
 
-	// Inicialización del debounce
-	debounceFSM_init();
+	if (!gpiosinit()) {	//!< Initialize GPIO for I2C
+		Error_Handler();
+	}
 
-	// Inicialización del delay con un valor de lista de delays
-	delayInit(&delay_toogles, list_delays[selected_delay]);
+	debounceFSM_init();	//!< DEBOUNCE USER BUTTON on NUCLEO-144
+	adxl345_FSM_init();
 
-	uartsendString((uint8_t *)"Inicia Aplicacion");
+	/**
+	 * Notifies the start of the application through the serial port
+	 */
+	uartsendString((uint8_t*) "Start Application\r\n");
 
-	/* Infinite loop */
 	while (1) {
 
-		debounceFSM_update();		// Verifica el estado de maquina del boton
+		debounceFSM_update();	//!<	Check USER BUTTON
 
-		//uartReceiveStringSize((uint8_t *)msg_asc, 2); 	// No funciona
-
-		uartReceiveStringSize(cmd_bufferRx, 2);			// Si Funciona
-
-
-
-
-
-
-
-//		if (uartReceiveStringSize((uint8_t*) msg_asc, 2)==HAL_OK) {
-//			BSP_LED_On(LED1);
-//			BSP_LED_On(LED2);
-//			BSP_LED_On(LED3);
-//		}
-//		else {
-//			BSP_LED_Off(LED1);
-//			BSP_LED_Off(LED2);
-//			BSP_LED_Off(LED3);
-//		}
-
-
-//		if (readKey()) {			// Verifica un flaco correcto de bajada
-//			selected_delay++;
-//			if (selected_delay > DELAYS_COUNT - 1) {
-//				selected_delay = 0;
-//			}
-//			delayWrite(&delay_toogles, list_delays[selected_delay]); // titileo actualizado
-//			uartsendString((uint8_t*) msg_des);		// envía mensaje flaco de subida
-//		}
-//
-//		if (readKey_rise()) {				// Verifica un flanco correcto de subida
-//			uartsendString((uint8_t*) msg_asc);		// envía mensaje flaco de subida
-//		}
-//
-//		if (delayRead(&delay_toogles)) {
-//			delayRead(&delay_toogles);
-//			BSP_LED_Toggle(LED2);
-//		}
-
+		adxl345_FSM_update();			//!<	Run FSM adxl345
 
 	}
 }
@@ -216,9 +173,10 @@ static void SystemClock_Config(void) {
  * @param  None
  * @retval None
  */
-static void Error_Handler(void) {
+void Error_Handler(void) {
 	/* Turn LED2 on */
-	BSP_LED_On(LED2);
+	BSP_LED_On(LED3);
+	__disable_irq();
 	while (1) {
 	}
 }

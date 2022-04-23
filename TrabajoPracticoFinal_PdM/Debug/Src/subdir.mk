@@ -5,12 +5,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Src/adxl345_FSM.c \
 ../Src/main.c 
 
 OBJS += \
+./Src/adxl345_FSM.o \
 ./Src/main.o 
 
 C_DEPS += \
+./Src/adxl345_FSM.d \
 ./Src/main.d 
 
 
@@ -21,7 +24,7 @@ Src/%.o Src/%.su: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/main.d ./Src/main.o ./Src/main.su
+	-$(RM) ./Src/adxl345_FSM.d ./Src/adxl345_FSM.o ./Src/adxl345_FSM.su ./Src/main.d ./Src/main.o ./Src/main.su
 
 .PHONY: clean-Src
 
